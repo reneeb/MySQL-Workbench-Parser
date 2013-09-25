@@ -11,7 +11,7 @@ use File::Spec;
 use_ok 'MySQL::Workbench::Parser';
 
 my $mwb = File::Spec->catfile(
-    dirname __FILE__,
+    dirname( __FILE__ ),
     'test.mwb',
 );
 
