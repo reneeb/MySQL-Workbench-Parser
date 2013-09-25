@@ -1,2 +1,3 @@
 *.swp
 MySQL-Workbench-Parser*
+.build*
