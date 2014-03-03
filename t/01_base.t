@@ -20,12 +20,12 @@ tables:
   -
     columns:
       -
-        autoincrement: 0
+        autoincrement: '0'
         datatype: INT
         default_value: ''
         length: '-1'
         name: user_id
-        not_null: 1
+        not_null: '1'
         precision: '-1'
     foreign_keys: {}
     name: tm_user
@@ -34,52 +34,52 @@ tables:
   -
     columns:
       -
-        autoincrement: 0
+        autoincrement: '0'
         datatype: INT
         default_value: ''
         length: '-1'
         name: speisen_id
-        not_null: 1
+        not_null: '1'
         precision: '-1'
       -
-        autoincrement: 0
+        autoincrement: '0'
         datatype: VARCHAR
         default_value: ''
-        length: 45
+        length: '45'
         name: name
-        not_null: 1
+        not_null: '1'
         precision: '-1'
       -
-        autoincrement: 0
+        autoincrement: '0'
         datatype: DECIMAL
         default_value: ''
         length: '-1'
         name: speisencol
-        not_null: 0
+        not_null: '0'
         precision: 10,0
       -
-        autoincrement: 0
+        autoincrement: '0'
         datatype: VARCHAR
         default_value: ''
-        length: 45
+        length: '45'
         name: speisencol1
-        not_null: 0
+        not_null: '0'
         precision: '-1'
       -
-        autoincrement: 0
+        autoincrement: '0'
         datatype: INT
         default_value: ''
         length: '-1'
         name: table1_id
-        not_null: 1
+        not_null: '1'
         precision: '-1'
       -
-        autoincrement: 0
+        autoincrement: '0'
         datatype: INT
         default_value: ''
         length: '-1'
         name: table1_id1
-        not_null: 1
+        not_null: '1'
         precision: '-1'
     foreign_keys:
       table1:
@@ -96,12 +96,12 @@ tables:
   -
     columns:
       -
-        autoincrement: 0
+        autoincrement: '0'
         datatype: INT
         default_value: ''
         length: '-1'
         name: table1_id
-        not_null: 1
+        not_null: '1'
         precision: '-1'
     foreign_keys: {}
     name: table1

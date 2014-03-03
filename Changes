@@ -1,6 +1,10 @@
 Change history for MySQL::Workbench::Parser
 ===========================================
 
-0.01 2013-09-25T22:51:13
+0.02 2014-03-03
+
+     - fixed testscript as YAML::Tiny quotes numeric values now
+
+0.01 2013-09-25
 
      initial release
