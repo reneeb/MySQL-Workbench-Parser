@@ -4,6 +4,7 @@ use strict;
 use warnings;
 
 use Test::More;
+use Test::LongString;
 
 use File::Basename;
 use File::Spec;
@@ -110,6 +111,6 @@ tables:
 |;
 
 my $parser = MySQL::Workbench::Parser->new( file => $mwb );
-is $parser->dump, $check;
+is_string $parser->dump, $check;
 
 done_testing();
