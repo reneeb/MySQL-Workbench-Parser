@@ -148,3 +148,14 @@ returns an array of L<MySQL::Workbench::Parser::Table> objects
 dump the database structure as YAML
 
     my $yaml = $parser->dump;
+
+=head2 get_datatype
+
+get datatype for a workbench column datatype
+
+    my $datatype = $table->get_datatype( 'com.mysql.rdbms.mysql.datatype.mediumtext' );
+
+returns the MySQL name of the datatype
+
+    MEDIUMTEXT
+
