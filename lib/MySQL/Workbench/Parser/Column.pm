@@ -44,6 +44,26 @@ has not_null      => ( is => 'rwp' );
 has autoincrement => ( is => 'rwp' );
 has default_value => ( is => 'rwp' );
 
+=head2 as_hash
+
+return info about a column as a hash
+
+    my %info = $column->as_hash;
+
+returns
+
+    (
+        name          => 'id',
+        datatype      => 'INT',
+        length        => '',
+        precision     => '0',
+        not_null      => '1',
+        autoincrement => '1',
+        default_value => '',
+    )
+
+=cut
+
 sub as_hash {
     my $self = shift;
 
