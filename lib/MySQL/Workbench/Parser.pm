@@ -15,7 +15,7 @@ use YAML::Tiny;
 
 use MySQL::Workbench::Parser::Table;
 
-our $VERSION = 0.02;
+our $VERSION = 0.03;
 
 has file   => (
     is       => 'ro',
@@ -79,8 +79,11 @@ sub _parse {
     my %datatypes;
     my @simple_type_nodes = $dom->documentElement->findnodes( './/value[@key="simpleDatatypes"]/link' );
     for my $type_node ( @simple_type_nodes ) {
-         my $link          = $type_node->textContent;
-         $datatypes{$link} = { name => uc +(split /\./, $link)[-1], length => undef };
+         my $link     = $type_node->textContent;
+         my $datatype = uc +(split /\./, $link)[-1];
+         $datatype    =~ s/_F\z//;
+
+         $datatypes{$link} = { name => $datatype, length => undef };
     }
 
     my @user_type_structs = $dom->documentElement->findnodes( './/value[@key="userDatatypes"]' );
