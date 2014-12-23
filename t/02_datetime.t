@@ -45,6 +45,12 @@ tables:
         not_null: '0'
         precision: '-1'
     foreign_keys: {}
+    indexes:
+      -
+        columns:
+          - id
+        name: PRIMARY
+        type: PRIMARY
     name: history
     primary_key:
       - id

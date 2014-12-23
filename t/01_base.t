@@ -29,6 +29,12 @@ tables:
         not_null: '1'
         precision: '-1'
     foreign_keys: {}
+    indexes:
+      -
+        columns:
+          - user_id
+        name: PRIMARY
+        type: PRIMARY
     name: tm_user
     primary_key:
       - user_id
@@ -90,6 +96,23 @@ tables:
         -
           foreign: table1_id
           me: table1_id1
+    indexes:
+      -
+        columns:
+          - speisen_id
+          - name
+        name: PRIMARY
+        type: PRIMARY
+      -
+        columns:
+          - table1_id
+        name: fk_speisen_table1
+        type: INDEX
+      -
+        columns:
+          - table1_id1
+        name: fk_speisen_table11
+        type: INDEX
     name: speisen
     primary_key:
       - speisen_id
@@ -105,6 +128,12 @@ tables:
         not_null: '1'
         precision: '-1'
     foreign_keys: {}
+    indexes:
+      -
+        columns:
+          - table1_id
+        name: PRIMARY
+        type: PRIMARY
     name: table1
     primary_key:
       - table1_id
@@ -112,5 +141,6 @@ tables:
 
 my $parser = MySQL::Workbench::Parser->new( file => $mwb );
 is_string $parser->dump, $check;
+
 
 done_testing();
