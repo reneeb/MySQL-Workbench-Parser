@@ -13,7 +13,7 @@ use_ok 'MySQL::Workbench::Parser';
 
 my $mwb = File::Spec->catfile(
     dirname( __FILE__ ),
-    'index.mwb',
+    'actions.mwb',
 );
 
 my $check = q|---
@@ -128,13 +128,13 @@ tables:
         -
           foreign: group_id
           me: group_id
-          on_delete: 'no action'
-          on_update: 'no action'
+          on_delete: restrict
+          on_update: cascade
       users:
         -
           foreign: idusers
           me: user_id
-          on_delete: 'no action'
+          on_delete: cascade
           on_update: 'no action'
     indexes:
       -
