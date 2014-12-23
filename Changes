@@ -1,6 +1,11 @@
 Change history for MySQL::Workbench::Parser
 ===========================================
 
+0.04 2014-12-23
+
+  [IMPROVEMENTS]
+  * add support for INDEXES (UNIQUE, INDEX)
+
 0.03 2014-11-19
 
      - remove "_F" from workbench specific column datatypes
