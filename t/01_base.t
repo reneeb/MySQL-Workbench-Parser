@@ -93,9 +93,13 @@ tables:
         -
           foreign: table1_id
           me: table1_id
+          on_delete: 'no action'
+          on_update: 'no action'
         -
           foreign: table1_id
           me: table1_id1
+          on_delete: 'no action'
+          on_update: 'no action'
     indexes:
       -
         columns:

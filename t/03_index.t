@@ -128,10 +128,14 @@ tables:
         -
           foreign: group_id
           me: group_id
+          on_delete: 'no action'
+          on_update: 'no action'
       users:
         -
           foreign: idusers
           me: user_id
+          on_delete: 'no action'
+          on_update: 'no action'
     indexes:
       -
         columns:
