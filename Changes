@@ -1,6 +1,9 @@
 Change history for MySQL::Workbench::Parser
 ===========================================
 
+  [IMPROVEMENTS]
+  * add support for actions on foreign keys
+
 0.04 2014-12-23
 
   [IMPROVEMENTS]
