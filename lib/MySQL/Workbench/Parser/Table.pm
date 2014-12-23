@@ -11,8 +11,9 @@ use Scalar::Util qw(blessed);
 use YAML::Tiny;
 
 use MySQL::Workbench::Parser::Column;
+use MySQL::Workbench::Parser::Index;
 
-our $VERSION = 0.01;
+our $VERSION = 0.02;
 
 has node => (
     is       => 'ro',
@@ -40,6 +41,16 @@ has columns => (
     default => sub { [] },
 );
 
+has indexes => (
+    is  => 'rwp',
+    isa => sub {
+        ref $_[0] && ref $_[0] eq 'ARRAY' &&
+        all{ blessed $_ && $_->isa( 'MySQL::Workbench::Parser::Index' ) }@{$_[0]}
+    },
+    lazy    => 1,
+    default => sub { [] },
+);
+
 has foreign_keys => (
     is  => 'rwp',
     isa => sub {
@@ -57,6 +68,23 @@ has primary_key => (
 );
 
 has name => ( is => 'rwp' );
+
+has column_mapping => (
+    is   => 'rwp',
+    lazy => 1,
+    isa  => sub {
+        ref $_[0] && ref $_[0] eq 'HASH'
+    },
+    default => sub { 
+        my $self = shift;
+
+        my %map  = map{
+            $_->id => $_->name
+        }@{ $self->columns || [] };
+
+        \%map;
+    },
+);
 
 around new => sub {
     my ($code,$class,@arg) = @_;
@@ -107,9 +135,15 @@ sub as_hash {
         push @columns, $column->as_hash;
     }
 
+    my @indexes;
+    for my $index ( @{ $self->indexes } ) {
+        push @indexes, $index->as_hash;
+    }
+
     my %info = (
         name         => $self->name,
         columns      => \@columns,
+        indexes      => \@indexes,
         foreign_keys => $self->foreign_keys,
         primary_key  => $self->primary_key,
     );
@@ -156,9 +190,16 @@ sub _parse {
         push @{ $foreign_keys{$table} }, { me => $me_column, foreign => $column };
     }
 
+    my @indexes;
     my @index_column_nodes = $node->findnodes( './/value[@struct-name="db.mysql.Index"]' );
     for my $index_column_node ( @index_column_nodes ) {
         my $type = $index_column_node->findvalue( './/value[@key="indexType"]' );
+
+        my $index_obj = MySQL::Workbench::Parser::Index->new(
+            node  => $index_column_node,
+            table => $self,
+        );
+        push @indexes, $index_obj;
 
         next if $type ne 'PRIMARY';
 
@@ -172,6 +213,7 @@ sub _parse {
     }
 
     $self->_set_foreign_keys( \%foreign_keys );
+    $self->_set_indexes( \@indexes );
 }
 
 =head2 get_datatype
