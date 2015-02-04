@@ -8,7 +8,7 @@ use warnings;
 use Moo;
 use Scalar::Util qw(blessed);
 
-our $VERSION = 0.01;
+our $VERSION = 0.02;
 
 has node => (
     is       => 'ro',
@@ -25,6 +25,12 @@ has table => (
         blessed $_[0] && $_[0]->isa( 'MySQL::Workbench::Parser::Table' );
     },
 );
+
+=for Pod::Coverage BUILD
+
+=end Pod::Coverage
+
+=cut
 
 sub BUILD {
     my $self = shift;

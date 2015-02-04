@@ -13,7 +13,7 @@ use YAML::Tiny;
 use MySQL::Workbench::Parser::Column;
 use MySQL::Workbench::Parser::Index;
 
-our $VERSION = 0.02;
+our $VERSION = 0.03;
 
 has node => (
     is       => 'ro',
@@ -85,6 +85,12 @@ has column_mapping => (
         \%map;
     },
 );
+
+=for Pod::Coverage BUILD
+
+=end Pod::Coverage
+
+=cut
 
 sub BUILD {
     my $self = shift;
