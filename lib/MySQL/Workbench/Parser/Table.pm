@@ -88,8 +88,6 @@ has column_mapping => (
 
 =for Pod::Coverage BUILD
 
-=end Pod::Coverage
-
 =cut
 
 sub BUILD {

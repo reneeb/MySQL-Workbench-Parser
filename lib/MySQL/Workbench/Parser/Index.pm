@@ -28,8 +28,6 @@ has table => (
 
 =for Pod::Coverage BUILD
 
-=end Pod::Coverage
-
 =cut
 
 sub BUILD {
