@@ -86,14 +86,10 @@ has column_mapping => (
     },
 );
 
-around new => sub {
-    my ($code,$class,@arg) = @_;
-
-    my $obj = $code->($class, @arg);
-    $obj->_parse;
-
-    return $obj;
-};
+sub BUILD {
+    my $self = shift;
+    $self->_parse;
+}
 
 =head2 as_hash
 
