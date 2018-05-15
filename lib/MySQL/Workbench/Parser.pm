@@ -15,7 +15,7 @@ use YAML::Tiny;
 
 use MySQL::Workbench::Parser::Table;
 
-our $VERSION = 0.06;
+our $VERSION = 1.00;
 
 has file   => (
     is       => 'ro',
