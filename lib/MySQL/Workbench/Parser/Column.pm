@@ -108,3 +108,29 @@ sub _parse {
 }
 
 1;
+
+=head1 ATTRIBUTES
+
+=over 4
+
+=item * autoincrement
+
+=item * datatype
+
+=item * default_value
+
+=item * id
+
+=item * length
+
+=item * name
+
+=item * node
+
+=item * not_null
+
+=item * precision
+
+=item * table
+
+=back

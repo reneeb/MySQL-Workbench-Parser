@@ -159,3 +159,10 @@ returns the MySQL name of the datatype
 
     MEDIUMTEXT
 
+=head1 ATTRIBUTES
+
+=over 4
+
+=item * file
+
+=back

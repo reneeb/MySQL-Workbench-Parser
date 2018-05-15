@@ -271,3 +271,21 @@ sub _foreign_data {
 }
 
 1;
+
+=head1 ATTRIBUTES
+
+=over 4
+
+=item * comment
+
+=item * foreign_keys
+
+=item * name
+
+=item * node
+
+=item * parser
+
+=item * primary_key
+
+=back

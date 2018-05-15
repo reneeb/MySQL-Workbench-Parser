@@ -100,3 +100,19 @@ sub _parse {
 }
 
 1;
+
+=head1 ATTRIBUTES
+
+=over 4
+
+=item * id
+
+=item * name
+
+=item * node
+
+=item * table
+
+=item * type
+
+=back

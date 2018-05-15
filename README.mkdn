@@ -50,6 +50,10 @@ returns the MySQL name of the datatype
 
     MEDIUMTEXT
 
+# ATTRIBUTES
+
+- file
+
 
 
 ## Development
