@@ -67,6 +67,8 @@ has primary_key => (
     default => sub { [] },
 );
 
+has comment => (is => 'rwp');
+
 has name => ( is => 'rwp' );
 
 has column_mapping => (
@@ -148,6 +150,8 @@ sub as_hash {
         primary_key  => $self->primary_key,
     );
 
+    $info{comment} = $self->comment if $self->comment;
+
     return \%info;
 }
 
@@ -166,6 +170,9 @@ sub _parse {
         push @columns, $column_obj;
     }
     $self->_set_columns( \@columns );
+
+    my $comment = $node->findvalue( './value[@key="comment"]' );
+    $self->_set_comment( $comment ) if $comment;
 
     my $name = $node->findvalue( './value[@key="name"]' );
     $self->_set_name( $name );
