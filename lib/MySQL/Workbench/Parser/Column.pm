@@ -8,7 +8,7 @@ use warnings;
 use Moo;
 use Scalar::Util qw(blessed);
 
-our $VERSION = 0.03;
+our $VERSION = 0.04;
 
 has node => (
     is       => 'ro',
@@ -44,6 +44,7 @@ has precision     => ( is => 'rwp' );
 has not_null      => ( is => 'rwp' );
 has autoincrement => ( is => 'rwp' );
 has default_value => ( is => 'rwp' );
+has comment       => ( is => 'rwp' );
 
 =head2 as_hash
 
@@ -70,7 +71,7 @@ sub as_hash {
 
     my %info;
 
-    for my $attr ( qw(name length datatype precision not_null autoincrement default_value) ) {
+    for my $attr ( qw(name length datatype precision not_null autoincrement default_value comment) ) {
         $info{$attr} = $self->$attr();
     }
 
@@ -85,7 +86,7 @@ sub _parse {
     my $id = $node->findvalue( '@id' );
     $self->_set_id( $id );
 
-    for my $key ( qw(name length precision) ) {
+    for my $key ( qw(name length precision comment) ) {
         my $value  = $node->findvalue( './value[@key="' . $key . '"]' );
         my $method = $self->can( '_set_' . $key );
         $self->$method( $value );
@@ -114,6 +115,8 @@ sub _parse {
 =over 4
 
 =item * autoincrement
+
+=item * comment
 
 =item * datatype
 
