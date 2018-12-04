@@ -61,7 +61,7 @@ tables:
         comment: ''
         datatype: TEXT
         default_value: ''
-        length: '-1'
+        length: '11'
         name: sig
         not_null: '1'
         precision: '-1'

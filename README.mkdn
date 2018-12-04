@@ -8,7 +8,7 @@ MySQL::Workbench::Parser - parse .mwb files created with MySQL Workbench
 
 # VERSION
 
-version 1.01
+version 1.02
 
 # SYNOPSIS
 
@@ -54,9 +54,17 @@ returns the MySQL name of the datatype
 
 - file
 
+# WARNINGS
+
+The ER model designed with Workbench is checked for:
+
+- duplicate indices
+- duplicate table names
+- duplicate column names in a table
 
 
-## Development
+
+# Development
 
 The distribution is contained in a Git repository, so simply clone the
 repository
@@ -102,7 +110,7 @@ $ dzil test --author --release
 
 # AUTHOR
 
-Renee Baecker &lt;reneeb@cpan.org>
+Renee Baecker <reneeb@cpan.org>
 
 # COPYRIGHT AND LICENSE
 

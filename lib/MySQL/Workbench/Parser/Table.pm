@@ -13,7 +13,7 @@ use YAML::Tiny;
 use MySQL::Workbench::Parser::Column;
 use MySQL::Workbench::Parser::Index;
 
-our $VERSION = 0.03;
+our $VERSION = '1.02';
 
 has node => (
     is       => 'ro',

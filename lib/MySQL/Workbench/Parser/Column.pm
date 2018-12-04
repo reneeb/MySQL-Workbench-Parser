@@ -98,7 +98,7 @@ sub _parse {
     my $datatype_internal = $node->findvalue( './link[@struct-name="db.SimpleDatatype" or @struct-name="db.UserDatatype"]' );
     my $datatype          = $self->table->get_datatype( $datatype_internal );
     $self->_set_datatype( $datatype->{name} );
-    #$self->_set_length( $datatype->{length} )       if $datatype->{length};
+    $self->_set_length( $datatype->{length} )       if $datatype->{length};
     $self->_set_precision( $datatype->{precision} ) if $datatype->{precision};
 
     my $not_null = $node->findvalue( './value[@key="isNotNull"]' );
