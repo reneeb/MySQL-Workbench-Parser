@@ -8,6 +8,10 @@ use warnings;
 use Moo;
 use Scalar::Util qw(blessed);
 
+=head1 METHODS
+
+=cut
+
 our $VERSION = 0.04;
 
 has node => (
@@ -29,7 +33,6 @@ has table => (
 =for Pod::Coverage BUILD
 
 =cut
-
 
 sub BUILD {
     my $self = shift;
@@ -95,7 +98,7 @@ sub _parse {
     my $datatype_internal = $node->findvalue( './link[@struct-name="db.SimpleDatatype" or @struct-name="db.UserDatatype"]' );
     my $datatype          = $self->table->get_datatype( $datatype_internal );
     $self->_set_datatype( $datatype->{name} );
-    $self->_set_length( $datatype->{length} )       if $datatype->{length};
+    #$self->_set_length( $datatype->{length} )       if $datatype->{length};
     $self->_set_precision( $datatype->{precision} ) if $datatype->{precision};
 
     my $not_null = $node->findvalue( './value[@key="isNotNull"]' );
@@ -137,3 +140,7 @@ sub _parse {
 =item * table
 
 =back
+
+=head1 MISC
+
+=head2 BUILD

@@ -10,6 +10,10 @@ use Scalar::Util qw(blessed);
 
 our $VERSION = 0.02;
 
+=head1 METHODS
+
+=cut
+
 has node => (
     is       => 'ro',
     required => 1,
@@ -116,3 +120,8 @@ sub _parse {
 =item * type
 
 =back
+
+=head1 MISC
+
+=head2 BUILD
+

@@ -196,14 +196,10 @@ sub _parse {
 
         my %actions;
         my $delete_action = $foreign_key_node->findvalue( './/value[@key="deleteRule"]' );
-        if ( $delete_action ) {
-            $actions{on_delete} = lc $delete_action;
-        }
+        $actions{on_delete} = lc $delete_action;
 
         my $update_action = $foreign_key_node->findvalue( './/value[@key="updateRule"]' );
-        if ( $update_action ) {
-            $actions{on_update} = lc $update_action;
-        }
+        $actions{on_update} = lc $update_action;
 
         push @{ $foreign_keys{$table} }, { %actions, me => $me_column, foreign => $column };
     }
@@ -256,8 +252,6 @@ sub _foreign_data {
     my $self = shift;
     my %ids  = @_;
 
-    return if !$ids{table_id} || !$ids{column_id};
-
     my ($foreign_table_node) = $self->node->parentNode->findnodes(
         'value[@struct-name="db.mysql.Table" and @id="' . $ids{table_id} . '"]'
     );
@@ -288,4 +282,13 @@ sub _foreign_data {
 
 =item * primary_key
 
+=item * indexes
+
+=item * column_mapping
+
 =back
+
+=head1 MISC
+
+=head2 BUILD
+
