@@ -8,7 +8,7 @@ use warnings;
 use Moo;
 use Scalar::Util qw(blessed);
 
-our $VERSION = '1.02';
+our $VERSION = '1.03';
 
 =head1 METHODS
 
