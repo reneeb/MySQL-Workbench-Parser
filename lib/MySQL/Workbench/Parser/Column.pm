@@ -12,7 +12,7 @@ use Scalar::Util qw(blessed);
 
 =cut
 
-our $VERSION = '1.03';
+our $VERSION = '1.04';
 
 has node => (
     is       => 'ro',
