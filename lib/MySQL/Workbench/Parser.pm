@@ -43,6 +43,13 @@ has datatypes => (
     default => sub { +{} },
 );
 
+has dom => (
+    is  => 'rwp',
+    isa => sub {
+        blessed $_[0] && $_[0]->isa('XML::LibXML');
+    },
+);
+
 sub dump {
     my $self = shift;
 
@@ -75,6 +82,8 @@ sub _parse {
 
     my $xml = $zip->contents( 'document.mwb.xml' );
     my $dom = XML::LibXML->load_xml( string => $xml );
+
+    $self->_set_dom( $dom );
 
     my %datatypes;
     my @simple_type_nodes = $dom->documentElement->findnodes( './/value[@key="simpleDatatypes"]/link' );
@@ -199,12 +208,6 @@ Create a new parser object
         file => '/path/to/file.mwb',
     );
 
-=head2 tables
-
-returns an array of L<MySQL::Workbench::Parser::Table> objects
-
-    my @tables = $parser->tables;
-
 =head2 dump
 
 dump the database structure as YAML
@@ -225,7 +228,19 @@ returns the MySQL name of the datatype
 
 =over 4
 
+=item * tables
+
+An array of L<MySQL::Workbench::Parser::Table> objects
+
+    my @tables = $parser->tables;
+
 =item * file
+
+=item * datatypes
+
+=item * dom
+
+The L<DOM|https://metacpan.org/pod/XML::LibXML> created by L<XML::LibXML>.
 
 =back
 
