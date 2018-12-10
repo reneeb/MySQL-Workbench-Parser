@@ -81,6 +81,40 @@ sub as_hash {
     return \%info;
 }
 
+=head2 as_string
+
+Returns a stringified version of the column information
+
+    (
+        name          => 'id',
+        datatype      => 'INT',
+        length        => '',
+        precision     => '0',
+        not_null      => '1',
+        autoincrement => '1',
+        default_value => '',
+    )
+
+returns
+
+    id INT NOT NULL AUTOINCREMENT
+
+=cut
+
+sub as_string {
+    my ($self) = @_;
+
+    my $info = sprintf "%s %s%s%s%s%s",
+        $self->name,
+        $self->datatype,
+        ( $self->length > 0 ? "(" . $self->length . ")" : '' ),
+        ( $self->not_null ? ' NOT NULL' : '' ),
+        ( $self->autoincrement ? ' AUTOINCREMENT' : '' ),
+        $self->default_value;
+
+    return $info;
+}
+
 sub _parse {
     my $self = shift;
 
