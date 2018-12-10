@@ -8,7 +8,7 @@ MySQL::Workbench::Parser - parse .mwb files created with MySQL Workbench
 
 # VERSION
 
-version 1.04
+version 1.05
 
 # SYNOPSIS
 
@@ -28,12 +28,6 @@ Create a new parser object
         file => '/path/to/file.mwb',
     );
 
-## tables
-
-returns an array of [MySQL::Workbench::Parser::Table](https://metacpan.org/pod/MySQL::Workbench::Parser::Table) objects
-
-    my @tables = $parser->tables;
-
 ## dump
 
 dump the database structure as YAML
@@ -52,7 +46,17 @@ returns the MySQL name of the datatype
 
 # ATTRIBUTES
 
+- tables
+
+    An array of [MySQL::Workbench::Parser::Table](https://metacpan.org/pod/MySQL::Workbench::Parser::Table) objects
+
+        my @tables = $parser->tables;
+
 - file
+- datatypes
+- dom
+
+    The [DOM](https://metacpan.org/pod/XML::LibXML) created by [XML::LibXML](https://metacpan.org/pod/XML::LibXML).
 
 # WARNINGS
 
