@@ -146,6 +146,7 @@ sub _lint {
             my $index_name = $index->name;
 
             next INDEX if $index_name eq 'PRIMARY';
+            next INDEX if $index->type eq 'UNIQUE';
 
             $indexes{$index_name}++;
         }
