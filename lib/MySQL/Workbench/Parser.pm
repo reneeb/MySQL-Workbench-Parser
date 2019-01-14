@@ -17,6 +17,8 @@ use MySQL::Workbench::Parser::Table;
 
 our $VERSION = '1.06';
 
+has lint => ( is => 'ro', default => sub { 1 } );
+
 has file   => (
     is       => 'ro',
     required => 1,
@@ -104,8 +106,10 @@ sub _parse {
              my ($orig)      = $sql =~ m{^([A-Z]+)};
              my ($length)    = $sql =~ m{\( (\d+) \)}x;
              my ($precision) = $sql =~ m{\( (\d+,\d+) \)}x;
+             my ($args)      = $sql =~ m{\( (.+?) \)}x;
+             my $gui_name    = $type->findvalue( './value[@key="name"]' );
 
-             $datatypes{$name} = { name => $orig, length => $length, precision => $precision };
+             $datatypes{$name} = { name => $orig, length => $length, precision => $precision, gui_name => $gui_name, args => $args };
          }
     }
 
@@ -121,7 +125,7 @@ sub _parse {
         );
     }
 
-    $self->_lint( \@tables );
+    $self->_lint( \@tables ) if $self->lint;
 
     $self->_set_tables( \@tables );
 }
@@ -242,6 +246,10 @@ An array of L<MySQL::Workbench::Parser::Table> objects
 =item * dom
 
 The L<DOM|https://metacpan.org/pod/XML::LibXML> created by L<XML::LibXML>.
+
+=item * lint
+
+If set to false, the linting isn't done (default: true)
 
 =back
 
