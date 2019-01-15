@@ -48,6 +48,7 @@ has not_null      => ( is => 'rwp' );
 has autoincrement => ( is => 'rwp' );
 has default_value => ( is => 'rwp' );
 has comment       => ( is => 'rwp' );
+has type_info     => ( is => 'rwp' );
 
 =head2 as_hash
 
@@ -132,6 +133,7 @@ sub _parse {
     my $datatype_internal = $node->findvalue( './link[@struct-name="db.SimpleDatatype" or @struct-name="db.UserDatatype"]' );
     my $datatype          = $self->table->get_datatype( $datatype_internal );
     $self->_set_datatype( $datatype->{name} );
+    $self->_set_type_info( $datatype );
     $self->_set_length( $datatype->{length} )       if $datatype->{length};
     $self->_set_precision( $datatype->{precision} ) if $datatype->{precision};
 
@@ -172,6 +174,34 @@ sub _parse {
 =item * precision
 
 =item * table
+
+=item * type_info
+
+More information about the datatype:
+
+=over 4
+
+=item * args
+
+The I<length>, I<precision> or a list of possible values (for enums).
+
+=item * gui_name
+
+The column type as shown in Workbench. For user defined types
+it is the label shown in the dropdowns.
+
+=item * length
+
+E.g. for C<VARCHAR> columns, the max length  of the value
+
+=item * name
+
+The SQL definition name. For user defined types, this is the
+underlying data type.
+
+=item * precision
+
+=back
 
 =back
 
