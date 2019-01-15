@@ -49,6 +49,7 @@ has autoincrement => ( is => 'rwp' );
 has default_value => ( is => 'rwp' );
 has comment       => ( is => 'rwp' );
 has type_info     => ( is => 'rwp' );
+has flags         => ( is => 'rwp' );
 
 =head2 as_hash
 
@@ -137,6 +138,12 @@ sub _parse {
     $self->_set_length( $datatype->{length} )       if $datatype->{length};
     $self->_set_precision( $datatype->{precision} ) if $datatype->{precision};
 
+    my %flags = map{
+        my $flag = lc $_->textContent;
+        $flag => 1;
+    }@{ $node->findnodes('./value[@key="flags"]/value') || [] };
+    $self->_set_flags( \%flags );
+
     my $not_null = $node->findvalue( './value[@key="isNotNull"]' );
     $self->_set_not_null( $not_null );
 
@@ -160,6 +167,10 @@ sub _parse {
 =item * datatype
 
 =item * default_value
+
+=item * flags
+
+Any extra flags like I<binary>, I<unsigned> and/or I<zerofill>.
 
 =item * id
 
