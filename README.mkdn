@@ -8,7 +8,7 @@ MySQL::Workbench::Parser - parse .mwb files created with MySQL Workbench
 
 # VERSION
 
-version 1.08
+version 1.09
 
 # SYNOPSIS
 
@@ -51,6 +51,12 @@ returns the MySQL name of the datatype
     An array of [MySQL::Workbench::Parser::Table](https://metacpan.org/pod/MySQL::Workbench::Parser::Table) objects
 
         my @tables = $parser->tables;
+
+- views
+
+    An array of [MySQL::Workbench::Parser::View](https://metacpan.org/pod/MySQL::Workbench::Parser::View) objects
+
+        my @views = $parser->views;
 
 - file
 - datatypes
