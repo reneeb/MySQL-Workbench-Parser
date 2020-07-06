@@ -153,4 +153,7 @@ is $view->name, 'view1';
 my @columns = @{ $view->columns || [] };
 is_deeply [ map{ $_->name }@columns ], [qw/cidr col2/], "Check columns of view";
 
+is_deeply $view->tables, [qw/table1/], "Check tables the view depends on";
+is_deeply $all_views->[1]->tables, [qw/table1 table2/], "Check tables the view2 depends on";
+
 done_testing();

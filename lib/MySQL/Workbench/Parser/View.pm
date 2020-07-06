@@ -16,7 +16,7 @@ use MySQL::Workbench::Parser::Column;
 use MySQL::Workbench::Parser::Index;
 use MySQL::Workbench::Parser::MySQLParser;
 
-our $VERSION = '1.09';
+our $VERSION = '1.10';
 
 has node => (
     is       => 'ro',
@@ -39,6 +39,15 @@ has columns => (
     isa => sub {
         ref $_[0] && ref $_[0] eq 'ARRAY' &&
         all{ blessed $_ && $_->isa( 'MySQL::Workbench::Parser::Column' ) }@{$_[0]}
+    },
+    lazy    => 1,
+    default => sub { [] },
+);
+
+has tables => (
+    is  => 'rwp',
+    isa => sub {
+        ref $_[0] && ref $_[0] eq 'ARRAY'
     },
     lazy    => 1,
     default => sub { [] },
@@ -167,6 +176,7 @@ sub _parse {
     }
 
     $self->_set_columns( \@columns );
+    $self->_set_tables( [ $view->tables ] );
 
     my $comment = $node->findvalue( './value[@key="comment"]' );
     $self->_set_comment( $comment ) if $comment;
