@@ -16,7 +16,7 @@ use YAML::Tiny;
 use MySQL::Workbench::Parser::Table;
 use MySQL::Workbench::Parser::View;
 
-our $VERSION = '1.09';
+our $VERSION = '1.10';
 
 has lint => ( is => 'ro', default => sub { 1 } );
 

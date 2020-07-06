@@ -8,7 +8,7 @@ MySQL::Workbench::Parser - parse .mwb files created with MySQL Workbench
 
 # VERSION
 
-version 1.09
+version 1.10
 
 # SYNOPSIS
 
