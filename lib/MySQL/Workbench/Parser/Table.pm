@@ -274,9 +274,17 @@ sub _foreign_data {
 
 =item * comment
 
+=item * columns
+
+An array reference of L<MySQL::Workbench::Parser::Column> objects
+
 =item * foreign_keys
 
+An array reference of all relationships to other tables
+
 =item * name
+
+The name of the table
 
 =item * node
 
