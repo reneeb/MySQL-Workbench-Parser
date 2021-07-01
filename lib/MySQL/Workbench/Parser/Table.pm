@@ -117,13 +117,15 @@ returns
             ],
         },
         columns      => [
-            name          => 'id',
-            datatype      => 'INT',
-            length        => '',
-            precision     => '0',
-            not_null      => '1',
-            autoincrement => '1',
-            default_value => '',
+            {
+                name          => 'id',
+                datatype      => 'INT',
+                length        => '',
+                precision     => '0',
+                not_null      => '1',
+                autoincrement => '1',
+                default_value => '',
+            }
         ],
     )
 
