@@ -363,7 +363,7 @@ create : CREATE or_replace(?) create_view_option(s?) /view/i NAME /as/i view_sel
             join(', ',
                 map {
                     $_->{'join'} ?
-                        () : 
+                        () :
                         sprintf('%s%s',
                             $_->{'name'},
                             $_->{'alias'} ? ' as ' . $_->{'alias'} : ''
