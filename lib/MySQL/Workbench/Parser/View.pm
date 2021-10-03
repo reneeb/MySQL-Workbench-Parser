@@ -91,6 +91,8 @@ sub BUILD {
     $self->_parse;
 }
 
+=head1 METHODS
+
 =head2 as_hash
 
 return info about a view as a hash
