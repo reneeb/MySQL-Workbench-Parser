@@ -253,6 +253,17 @@ __END__
 
 =head1 SYNOPSIS
 
+    # create the parser
+    my $parser = MySQL::Workbench::Parser->new(
+        file => '/path/to/file.mwb',
+    );
+
+    # access tables of the workbench ER model
+    my @tables = @{ $parser->tables };
+
+    # access views of the workbench ER model
+    my @views = @{ $parser->views };
+
 =head1 DESCRIPTION
 
 The MySQL Workbench is a tool to design database entity relationship models.
