@@ -1250,7 +1250,13 @@ SQL::Translator
 
 =head2 normalize_field
 
+Takes a field as argument and normalizes it in place.
+
 =head2 parse
+
+Parses input data (as a string) using the given SQL::Translator instance.
+This method is called as C<$class::parse($transator, $data_as_string)>.  See
+L<SQL::Translator::Parser> for more information.
 
 =head1 AUTHOR
 
