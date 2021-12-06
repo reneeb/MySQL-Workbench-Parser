@@ -32,7 +32,7 @@ has parser => (
     isa      => sub {
         blessed $_[0] && $_[0]->isa( 'MySQL::Workbench::Parser' );
     },
-); 
+);
 
 has columns => (
     is  => 'rwp',
@@ -63,17 +63,17 @@ has column_mapping => (
     isa  => sub {
         ref $_[0] && ref $_[0] eq 'HASH'
     },
-    default => sub { 
+    default => sub {
         my $self = shift;
 
         my %map;
 
-        TABLE: 
-        for my $table ( @{ $self->parser->tables } ) {             
+        TABLE:
+        for my $table ( @{ $self->parser->tables } ) {
             my $name = $table->name;
-            
+
             for my $col ( @{ $table->columns } ) {
-                my $col_name = $col->name; 
+                my $col_name = $col->name;
                 $map{$name}->{$col_name} = $col;
             }
         }
@@ -90,6 +90,8 @@ sub BUILD {
     my $self = shift;
     $self->_parse;
 }
+
+=head1 METHODS
 
 =head2 as_hash
 
