@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/reneeb/MySQL-Workbench-Parser.svg?branch=master)](https://travis-ci.org/reneeb/MySQL-Workbench-Parser)
-[![Kwalitee status](http://cpants.cpanauthors.org/dist/MySQL-Workbench-Parser.png)](http://cpants.charsbar.org/dist/overview/MySQL-Workbench-Parser)
+[![Kwalitee status](https://cpants.cpanauthors.org/dist/MySQL-Workbench-Parser.png)](https://cpants.cpanauthors.org/dist/MySQL-Workbench-Parser)
 [![GitHub issues](https://img.shields.io/github/issues/reneeb/MySQL-Workbench-Parser.svg)](https://github.com/reneeb/MySQL-Workbench-Parser/issues)
 
 # NAME
@@ -8,9 +8,20 @@ MySQL::Workbench::Parser - parse .mwb files created with MySQL Workbench
 
 # VERSION
 
-version 1.10
+version 1.11
 
 # SYNOPSIS
+
+    # create the parser
+    my $parser = MySQL::Workbench::Parser->new(
+        file => '/path/to/file.mwb',
+    );
+
+    # access tables of the workbench ER model
+    my @tables = @{ $parser->tables };
+
+    # access views of the workbench ER model
+    my @views = @{ $parser->views };
 
 # DESCRIPTION
 
@@ -48,13 +59,13 @@ returns the MySQL name of the datatype
 
 - tables
 
-    An array of [MySQL::Workbench::Parser::Table](https://metacpan.org/pod/MySQL::Workbench::Parser::Table) objects
+    An array of [MySQL::Workbench::Parser::Table](https://metacpan.org/pod/MySQL%3A%3AWorkbench%3A%3AParser%3A%3ATable) objects
 
         my @tables = $parser->tables;
 
 - views
 
-    An array of [MySQL::Workbench::Parser::View](https://metacpan.org/pod/MySQL::Workbench::Parser::View) objects
+    An array of [MySQL::Workbench::Parser::View](https://metacpan.org/pod/MySQL%3A%3AWorkbench%3A%3AParser%3A%3AView) objects
 
         my @views = $parser->views;
 
@@ -62,7 +73,7 @@ returns the MySQL name of the datatype
 - datatypes
 - dom
 
-    The [DOM](https://metacpan.org/pod/XML::LibXML) created by [XML::LibXML](https://metacpan.org/pod/XML::LibXML).
+    The [DOM](https://metacpan.org/pod/XML::LibXML) created by [XML::LibXML](https://metacpan.org/pod/XML%3A%3ALibXML).
 
 - lint
 
